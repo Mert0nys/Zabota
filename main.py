@@ -3,7 +3,15 @@ import requests
 import logging
 import json
 from messages import start_message, help_message, reset_message
-from sekret_key import BOT_TOKEN, API_KEY, API_URL
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+BOT_TOKEN = os.getenv('BOT_TOKEN')
+API_KEY = os.getenv('API_KEY')
+API_URL = os.getenv('API_URL')
+
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
