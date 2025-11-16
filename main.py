@@ -37,7 +37,6 @@ def chatgpt_response(user_id, user_message):
         "Content-Type": "application/json",
     }
     
-    # Формируем запрос к OpenRouter API
     data = {
         "model": "openai/gpt-oss-20b:free",
         "messages": [
@@ -48,12 +47,12 @@ def chatgpt_response(user_id, user_message):
 
     try:
         response = requests.post(API_URL, headers=headers, data=json.dumps(data))
-        response.raise_for_status()  # Проверка на ошибки в ответе сервера
+        response.raise_for_status()
         response_data = response.json()
         
         answer = response_data['choices'][0]['message']['content']
-        user_context[user_id].append(user_message)  # Сохраняем сообщение пользователя
-        user_context[user_id].append(answer)  # Сохраняем ответ
+        user_context[user_id].append(user_message)
+        user_context[user_id].append(answer)
 
         return answer
     except Exception as e:
